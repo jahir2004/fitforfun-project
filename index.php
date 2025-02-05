@@ -16,8 +16,8 @@
                 <li><a href="#">Lid</a></li>
                 <li><a href="#">Les</a></li>
                 <li><a href="#">Contact</a></li>
+                <div class="menu-icon">☰</div>
             </ul>
-            <div class="menu-icon">☰</div>
         </nav>
     </header>
     <section class="hero">
