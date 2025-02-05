@@ -11,8 +11,8 @@
         <nav>
             <div class="logo">FITFORFUN</div>
             <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Account</a></li>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="account.php">Account</a></li>
                 <li><a href="#">Lid</a></li>
                 <li><a href="#">Les</a></li>
                 <li><a href="#">Contact</a></li>

@@ -1,13 +1,13 @@
 create database fitforfun;
+use fitforfun;
 
-create table gebruiker (
-    Kolomnaam       Datatype    Lengte  Nullable   Opmerking  
-    id              int                   no        primary key
+CREATE TABLE gebruiker (
+    id               INT AUTO_INCREMENT PRIMARY KEY,
     voornaam        VARCHAR(50)   NOT NULL,
     tussenvoegsel   VARCHAR(10)   NULL,
     achternaam      VARCHAR(50)   NOT NULL,
     gebruikersnaam  VARCHAR(100)  NOT NULL UNIQUE,
-    wachtwoord      VARCHAR(255)  NOT NULL,
+    wachtwoord      VARCHAR(255)  NOT NULL,  
     is_ingelogd     BIT           NOT NULL DEFAULT 0,
     ingelogd        DATETIME      NULL,
     uitgelogd       DATETIME      NULL,
@@ -30,29 +30,27 @@ CREATE TABLE rol (
 
 CREATE TABLE medewerker (
     id               INT AUTO_INCREMENT PRIMARY KEY,
-    voornaam        VARCHAR(50) NOT NULL,
-    tussenvoegsel   VARCHAR(10) NULL,
-    achternaam      VARCHAR(50) NOT NULL,
+    gebruiker_id    INT NOT NULL UNIQUE,
     nummer          MEDIUMINT NOT NULL UNIQUE,
     medewerkersoort ENUM('Manager', 'Beheerder', 'Diskmedewerker') NOT NULL,
     is_actief       BIT NOT NULL DEFAULT 1,
     opmerking       VARCHAR(250) NULL,
     datum_aangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    datum_gewijzigd DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
+    datum_gewijzigd DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+    FOREIGN KEY (gebruiker_id) REFERENCES gebruiker(id) ON DELETE CASCADE
 );
 
 CREATE TABLE lid (
     id               INT AUTO_INCREMENT PRIMARY KEY,
-    voornaam        VARCHAR(50) NOT NULL,
-    tussenvoegsel   VARCHAR(10) NULL,
-    achternaam      VARCHAR(50) NOT NULL,
+    gebruiker_id    INT NOT NULL UNIQUE,
     relatienummer   MEDIUMINT NOT NULL UNIQUE,
     mobiel         VARCHAR(20) NOT NULL,
     email          VARCHAR(100) NOT NULL UNIQUE,
     is_actief       BIT NOT NULL DEFAULT 1,
     opmerking       VARCHAR(250) NULL,
     datum_aangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    datum_gewijzigd DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
+    datum_gewijzigd DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+    FOREIGN KEY (gebruiker_id) REFERENCES gebruiker(id) ON DELETE CASCADE
 );
 
 CREATE TABLE les (
@@ -71,15 +69,16 @@ CREATE TABLE les (
 
 CREATE TABLE reservering (
     id               INT AUTO_INCREMENT PRIMARY KEY,
-    voornaam        VARCHAR(50) NOT NULL,
-    tussenvoegsel   VARCHAR(10) NULL,
-    achternaam      VARCHAR(50) NOT NULL,
-    nummer          MEDIUMINT NOT NULL,
+    lid_id          INT NOT NULL,
+    les_id          INT NOT NULL,
     datum          DATE NOT NULL,
     tijd           TIME NOT NULL,
     reserveringstatus ENUM('Vrij', 'Bezet', 'Gereserveerd', 'Geannuleerd') NOT NULL,
     is_actief       BIT NOT NULL DEFAULT 1,
     opmerking       VARCHAR(250) NULL,
     datum_aangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    datum_gewijzigd DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
+    datum_gewijzigd DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+    FOREIGN KEY (lid_id) REFERENCES lid(id) ON DELETE CASCADE,
+    FOREIGN KEY (les_id) REFERENCES les(id) ON DELETE CASCADE
+);
 
