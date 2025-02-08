@@ -36,7 +36,16 @@
         <div class="sport">
             <h3>Tennis</h3>
             <p>Information On Lessons, Court Availability, And Tournaments.</p>
-        </div>
+        </div>        
     </section>
+
+    <footer>
+            <div class ="footer-content">
+                <li><a href="account.php">Account</a></li>
+                <li><a href="#">Lid</a></li>
+                <li><a href="#">Les</a></li>
+                <li><a href="#">Contact</a></li>
+            </div>
+        </footer> 
 </body>
 </html>

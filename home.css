@@ -80,3 +80,10 @@ header {
     text-align: center;
     border-radius: 10px;
 }
+
+footer {
+    background-color: #22729b;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}    
