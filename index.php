@@ -12,7 +12,7 @@
             <div class="logo">FITFORFUN</div>
             <ul class="nav-links">
                 <li><a href="index.php">Home</a></li>
-                <li><a href="account.php">Account</a></li>
+                <li><a href="registratie.php">Account</a></li>
                 <li><a href="#">Lid</a></li>
                 <li><a href="#">Les</a></li>
                 <li><a href="#">Contact</a></li>
@@ -28,20 +28,9 @@
             <button class="cta-button">Join Now</button>
         </div>
     </section>
-    <section class="sports-overview">
-        <div class="sport">
-            <h3>Basketball</h3>
-            <p>Details On Training Sessions, Tournaments, And Court Booking.</p>
-        </div>
-        <div class="sport">
-            <h3>Tennis</h3>
-            <p>Information On Lessons, Court Availability, And Tournaments.</p>
-        </div>        
-    </section>
-
     <footer>
             <div class ="footer-content">
-                <li><a href="account.php">Account</a></li>
+                <li><a href="#">Account</a></li>
                 <li><a href="#">Lid</a></li>
                 <li><a href="#">Les</a></li>
                 <li><a href="#">Contact</a></li>
