@@ -1,10 +1,20 @@
+<?php
+session_start();
+
+// Controleer of de gebruiker is ingelogd
+if (!isset($_SESSION['admin'])) {
+    header("Location: login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registratie Geslaagd</title>
-    <link rel="stylesheet" href="account.css">
+    <title>Bevestiging</title>
+    <link rel="stylesheet" href="home.css">
 </head>
 <body>
     <header>
@@ -12,7 +22,13 @@
             <div class="logo">FITFORFUN</div>
             <ul class="nav-links">
                 <li><a href="index.php">Home</a></li>
-                <li><a href="account.php">Account</a></li>
+                <li class="dropdown">
+                    <a href="account-registratie.php" class="dropbtn">Account</a>
+                    <div class="dropdown-content">
+                        <a href="accountbeheer.php">Beheer</a>
+                        <a href="accountoverzicht.php">Overzicht</a>
+                    </div>
+                </li>
                 <li><a href="#">Lid</a></li>
                 <li><a href="#">Les</a></li>
                 <li><a href="#">Contact</a></li>
@@ -20,21 +36,13 @@
             </ul>
         </nav>
     </header>
-
-    <div class="container">
-        <h2>Registratie Geslaagd!</h2>
-        <p>Bedankt voor het registreren bij fit for fun. Je kunt nu <a href="login.php">inloggen</a>.</p>
-    </div>
-
-    <footer>
-        <div class="footer-content">
-            <ul>
-                <li><a href="account.php">Account</a></li>
-                <li><a href="#">Lid</a></li>
-                <li><a href="#">Les</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welkom, <?php echo $_SESSION['admin']; ?>!</h1>
+            <p>Je bent succesvol ingelogd.</p>
+            <a href="accountbeheer.php" class="cta-button">Ga naar de beheerpagina</a>
+            <a href="accountoverzicht.php" class="cta-button">Ga naar de accountoverzicht</a>
         </div>
-    </footer>
+    </section>
 </body>
 </html>

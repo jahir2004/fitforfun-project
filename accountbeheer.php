@@ -1,5 +1,6 @@
 <?php
-// Verbinding maken met de database
+
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -11,22 +12,9 @@ if ($conn->connect_error) {
     die("Verbinding mislukt: " . $conn->connect_error);
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $voornaam = $_POST["voornaam"];
-    $tussenvoegsel = $_POST["tussenvoegsel"];
-    $achternaam = $_POST["achternaam"];
-    $gebruikersnaam = $_POST["gebruikersnaam"];
-    $wachtwoord = password_hash($_POST["wachtwoord"], PASSWORD_DEFAULT);
-
-    $sql = "INSERT INTO gebruiker (voornaam, tussenvoegsel, achternaam, gebruikersnaam, wachtwoord)
-            VALUES ('$voornaam', '$tussenvoegsel', '$achternaam', '$gebruikersnaam', '$wachtwoord')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Registratie succesvol!";
-    } else {
-        echo "Fout: " . $sql . "<br>" . $conn->error;
-    }
-}
+// Voorbeeld van het ophalen van gebruikersgegevens
+$sql = "SELECT * FROM gebruiker";
+$result = $conn->query($sql);
 
 $conn->close();
 ?>
@@ -36,8 +24,8 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account Registratie</title>
-    <link rel="stylesheet" href="home.css">
+    <title>Account Beheren</title>
+    <link rel="stylesheet" href="./home.css">
 </head>
 <body>
     <header>
@@ -61,15 +49,25 @@ $conn->close();
     </header>
     <section class="hero">
         <div class="hero-content">
-            <h1>Account Registratie</h1>
-            <form method="post" action="account-registratie.php">
-                <input type="text" name="voornaam" placeholder="Voornaam" required>
-                <input type="text" name="tussenvoegsel" placeholder="Tussenvoegsel">
-                <input type="text" name="achternaam" placeholder="Achternaam" required>
-                <input type="text" name="gebruikersnaam" placeholder="Gebruikersnaam" required>
-                <input type="password" name="wachtwoord" placeholder="Wachtwoord" required>
-                <button type="submit">Registreer</button>
-            </form>
+            <h1>Account Beheren</h1>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Voornaam</th>
+                    <th>Tussenvoegsel</th>
+                    <th>Achternaam</th>
+                    <th>Gebruikersnaam</th>
+                </tr>
+                <?php
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        echo "<tr><td>" . $row["id"]. "</td><td>" . $row["voornaam"]. "</td><td>" . $row["tussenvoegsel"]. "</td><td>" . $row["achternaam"]. "</td><td>" . $row["gebruikersnaam"]. "</td></tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='5'>Geen resultaten</td></tr>";
+                }
+                ?>
+            </table>
         </div>
     </section>
     <footer>
