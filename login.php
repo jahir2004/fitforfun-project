@@ -48,23 +48,17 @@ $conn->close();
     <link rel="stylesheet" href="home.css">
 </head>
 <body>
-    <header>
+<header>
         <nav>
-        <div class="logo">FITFORFUN</div>
-            <ul class="nav-links">
-                <li><a href="index.php">Home</a></li>
-                <li class="dropdown">
-                    <a href="account-registratie.php" class="dropbtn">Account</a>
-                    <div class="dropdown-content">
-                        <a href="accountbeheer.php">Beheer</a>
-                        <a href="accountoverzicht.php">Overzicht</a>
-                    </div>
-                </li>
-                <li><a href="#">Lid</a></li>
-                <li><a href="#">Les</a></li>
-                <li><a href="#">Contact</a></li>
-                <div class="menu-icon">☰</div>
-            </ul>
+            <div class="logo">FITFORFUN</div>
+                <ul class="nav-links">
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="login.php">Account</a></li>
+                    <li><a href="leden_overzicht.php">Lid</a></li>
+                    <li><a href="#">Les</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <div class="menu-icon">☰</div>
+                </ul>
         </nav>
     </header>
     <section class="hero">
@@ -75,7 +69,7 @@ $conn->close();
                 <input type="text" id="username" name="username" required><br><br>
                 <label for="password">Wachtwoord:</label>
                 <input type="password" id="password" name="password" required><br><br>
-                <button type="submit">Login</button>
+                <button type="cta-button">Login</button>
             </form>
         </div>
     </section>    

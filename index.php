@@ -12,14 +12,7 @@
             <div class="logo">FITFORFUN</div>
                 <ul class="nav-links">
                     <li><a href="index.php">Home</a></li>
-                    <li class="dropdown">
-                        <a href="account-registratie.php" class="dropbtn">Account</a>
-                            <div class="dropdown-content">
-                            <a href="accountbeheer.php">Beheer</a>
-                                <a href="accountoverzicht.php">Overzicht</a>
-                                    <a href="login.php">login</a> 
-                        </div>
-                    </li>
+                    <li><a href="login.php">Account</a></li>
                     <li><a href="leden_overzicht.php">Lid</a></li>
                     <li><a href="#">Les</a></li>
                     <li><a href="#">Contact</a></li>

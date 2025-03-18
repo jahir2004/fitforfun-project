@@ -1,5 +1,4 @@
 <?php
-// Verbinding maken met de database
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -12,20 +11,29 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $id = $_POST["id"];
     $voornaam = $_POST["voornaam"];
     $tussenvoegsel = $_POST["tussenvoegsel"];
     $achternaam = $_POST["achternaam"];
     $gebruikersnaam = $_POST["gebruikersnaam"];
-    $wachtwoord = password_hash($_POST["wachtwoord"], PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO gebruiker (voornaam, tussenvoegsel, achternaam, gebruikersnaam, wachtwoord)
-            VALUES ('$voornaam', '$tussenvoegsel', '$achternaam', '$gebruikersnaam', '$wachtwoord')";
+    $sql = "UPDATE gebruiker SET voornaam='$voornaam', tussenvoegsel='$tussenvoegsel', achternaam='$achternaam', gebruikersnaam='$gebruikersnaam' WHERE id=$id";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Registratie succesvol!";
+        echo "Record succesvol bijgewerkt";
     } else {
-        echo "Fout: " . $sql . "<br>" . $conn->error;
+        echo "Error bij bijwerken record: " . $conn->error;
     }
+}
+
+if (isset($_GET["id"])) {
+    $id = $_GET["id"];
+    $sql = "SELECT * FROM gebruiker WHERE id=$id";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+} else {
+    echo "Geen ID opgegeven.";
+    exit;
 }
 
 $conn->close();
@@ -36,8 +44,8 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account Registratie</title>
-    <link rel="stylesheet" href="home.css">
+    <title>Account Bewerken</title>
+    <link rel="stylesheet" href="./home.css">
 </head>
 <body>
 <header>
@@ -55,15 +63,18 @@ $conn->close();
     </header>
     <section class="hero">
         <div class="hero-content">
-            <h1> Nieuwe Account Toevoegen</h1>
-            <form method="post" action="account-registratie.php">
-                <input type="text" name="voornaam" placeholder="Voornaam" required>
-                <input type="text" name="tussenvoegsel" placeholder="Tussenvoegsel">
-                <input type="text" name="achternaam" placeholder="Achternaam" required>
-                <input type="text" name="gebruikersnaam" placeholder="Gebruikersnaam" required>
-                <input type="password" name="wachtwoord" placeholder="Wachtwoord" required>
-                <button type="submit">Registreer</button>
-                <a href="accountbeheer.php" class="cta-button">Overzicht</a>
+            <h1>Account Bewerken</h1>
+            <form method="post" action="account-bewerken.php">
+                <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                <label>Voornaam:</label>
+                <input type="text" name="voornaam" value="<?php echo $row['voornaam']; ?>"><br>
+                <label>Tussenvoegsel:</label>
+                <input type="text" name="tussenvoegsel" value="<?php echo $row['tussenvoegsel']; ?>"><br>
+                <label>Achternaam:</label>
+                <input type="text" name="achternaam" value="<?php echo $row['achternaam']; ?>"><br>
+                <label>Gebruikersnaam:</label>
+                <input type="text" name="gebruikersnaam" value="<?php echo $row['gebruikersnaam']; ?>"><br>
+                <input type="submit" value="Bijwerken" class="cta-button">
             </form>
         </div>
     </section>

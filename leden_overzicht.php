@@ -22,7 +22,7 @@ try {
         SELECT 
             l.id,
             l.gebruiker_id,
-            l.relatienummer,
+            l.relatienummer, 
             l.mobiel,
             l.email,
             l.is_actief,
@@ -41,82 +41,61 @@ try {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FitForFun - Leden Overzicht</title>
     <link rel="stylesheet" href="home.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 2em auto;
-            padding: 0 1em;
-        }
-
-        .header-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .add-button {
-            background-color: #4CAF50;
-            color: white;
+        .cta-button, .edit-btn, .delete-btn {
             padding: 10px 20px;
             text-decoration: none;
+            color: white;
+            border-radius: 3px;
+            margin-right: 5px; /* Voeg marge toe tussen de knoppen */
+        }
+        .cta-button {
+            background-color: #f44336; 
+        }
+        .edit-btn {
+            background-color: #2196F3; 
+        }
+        .delete-btn {
+            background-color: #f44336; 
+        }
+        .actions {
+            display: flex;
+        }
+        .message {
+            padding: 10px;
+            margin: 10px 0;
             border-radius: 4px;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
         }
-
-        .add-button:hover {
-            background-color: #45a049;
-            color: white;
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
         }
-
-        .search-container {
-            margin: 20px 0;
-        }
-
-        .search-container input[type="text"] {
-            padding: 8px;
-            width: 200px;
-        }
-
-        .search-container button {
-            padding: 8px 15px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        .search-container button:hover {
-            background-color: #45a049;
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             background-color: white;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
         th, td {
             padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid #ddd;
+            font-family: Arial, sans-serif;
+            color: #333; /* Zwarte kleur voor tekst */
         }
 
         th {
@@ -126,44 +105,6 @@ try {
 
         tr:hover {
             background-color: #f5f5f5;
-        }
-
-        .btn-view, .btn-edit, .btn-delete {
-            padding: 5px 10px;
-            color: white;
-            text-decoration: none;
-            border-radius: 3px;
-            margin-right: 5px;
-        }
-
-        .btn-view {
-            background-color: #4CAF50;
-        }
-
-        .btn-edit {
-            background-color: #ffc107;
-        }
-
-        .btn-delete {
-            background-color: #dc3545;
-        }
-
-        .message {
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 4px;
-        }
-
-        .success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        .error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
         }
 
         @media (max-width: 768px) {
@@ -179,20 +120,14 @@ try {
             }
         }
     </style>
+</head>
 <body>
-<header>
+    <header>
         <nav>
             <div class="logo">FITFORFUN</div>
                 <ul class="nav-links">
                     <li><a href="index.php">Home</a></li>
-                    <li class="dropdown">
-                        <a href="account-registratie.php" class="dropbtn">Account</a>
-                            <div class="dropdown-content">
-                            <a href="accountbeheer.php">Beheer</a>
-                                <a href="accountoverzicht.php">Overzicht</a>
-                                    <a href="login.php">login</a> 
-                        </div>
-                    </li>
+                    <li><a href="login.php">Account</a></li>
                     <li><a href="leden_overzicht.php">Lid</a></li>
                     <li><a href="#">Les</a></li>
                     <li><a href="#">Contact</a></li>
@@ -200,22 +135,20 @@ try {
                 </ul>
         </nav>
     </header>
-    <div class="hero">
+
+    <section class="hero">
         <div class="hero-content">
-                <h2>Leden Overzicht</h2>
-                <a href="lid_toevoegen.php" class="add-button">+ Nieuw Lid</a>
-            
+            <h1>Leden Overzicht</h1>
+            <a href="lid_toevoegen.php" class="cta-button">+ Nieuw Lid</a>
+
             <?php echo $message; ?>
 
-    
-                <div class="search-container">
-                    <form action="zoek_lid.php" method="get">
-                        <input type="text" name="achternaam" placeholder="Zoek op achternaam...">
-                        <button type="submit">Zoeken</button>
-                    </form>
-                </div>
-               
-            
+            <div class="search-container">
+                <form action="zoek_lid.php" method="get">
+                    <input type="text" name="achternaam" placeholder="Zoek op achternaam...">
+                    <button type="submit">Zoeken</button>
+                </form>
+            </div>
 
             <table>
                 <tr>
@@ -236,10 +169,10 @@ try {
                             <td><?php echo htmlspecialchars($lid['mobiel']); ?></td>
                             <td><?php echo htmlspecialchars($lid['email']); ?></td>
                             <td><?php echo ($lid['is_actief'] ? 'Ja' : 'Nee'); ?></td>
-                            <td>
-                                <a href="lid_bekijken.php?id=<?php echo $lid['id']; ?>" class="btn-view">Bekijken</a>
-                                <a href="lid_bewerken.php?id=<?php echo $lid['id']; ?>" class="btn-edit">Bewerken</a>
-                                <a href="javascript:void(0)" onclick="confirmDelete(<?php echo $lid['id']; ?>)" class="btn-delete">Verwijderen</a>
+                            <td class='actions'>
+                                <a href="lid_bekijken.php?id=<?php echo $lid['id']; ?>" class="edit-btn">Bekijken</a>
+                                <a href="lid_bewerken.php?id=<?php echo $lid['id']; ?>" class="edit-btn">Bewerken</a>
+                                <a href="javascript:void(0)" onclick="confirmDelete(<?php echo $lid['id']; ?>)" class="delete-btn">Verwijderen</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -250,7 +183,18 @@ try {
                 <?php endif; ?>
             </table>
         </div>    
-    </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <ul>
+                <li><a href="#">Account</a></li>
+                <li><a href="#">Lid</a></li>
+                <li><a href="#">Les</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
 
     <script>
         function confirmDelete(id) {
