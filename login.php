@@ -72,6 +72,16 @@ $conn->close();
                 <button type="cta-button">Login</button>
             </form>
         </div>
-    </section>    
+    </section> 
+    <footer>
+        <div class="footer-content">
+            <ul>
+                <li><a href="#">Account</a></li>
+                <li><a href="#">Lid</a></li>
+                <li><a href="#">Les</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </footer>   
 </body>
 </html>

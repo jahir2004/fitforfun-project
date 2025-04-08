@@ -4,58 +4,66 @@ $username = "root";
 $password = "";
 $dbname = "fitforfun";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+try {
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-if ($conn->connect_error) {
-    die("Verbinding mislukt: " . $conn->connect_error);
-}
+    if ($conn->connect_error) {
+        throw new Exception("Verbinding mislukt: " . $conn->connect_error);
+    }
 
-// ✅ Verwijderen van account via POST
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST["id"]) && is_numeric($_POST["id"])) {
-        $id = $_POST["id"];
+    // ✅ Verwijderen van account via POST
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_POST["id"]) && is_numeric($_POST["id"])) {
+            $id = $_POST["id"];
 
-        $stmt = $conn->prepare("DELETE FROM gebruiker WHERE id = ?");
-        $stmt->bind_param("i", $id);
+            $stmt = $conn->prepare("DELETE FROM gebruiker WHERE id = ?");
+            $stmt->bind_param("i", $id);
 
-        if ($stmt->execute()) {
+            if ($stmt->execute()) {
+                if ($stmt->affected_rows > 0) {
+                    $stmt->close();
+                    $conn->close();
+                    header("Location: accountbeheer.php?status=success");
+                    exit();
+                } else {
+                    echo "De account kan niet worden verwijderd. Controleer de selectie en probeer opnieuw.";
+                }
+            } else {
+                throw new Exception("Fout bij verwijderen: " . $conn->error);
+            }
+
             $stmt->close();
-            $conn->close();
-            header("Location: accountbeheer.php?status=success");
-            exit();
         } else {
-            echo "Fout bij verwijderen: " . $conn->error;
+            echo "de account kan niet worden verwijderd.";
+        }
+        $conn->close();
+        exit();
+    }
+
+    // ✅ Ophalen van account via GET
+    if (isset($_GET["id"]) && is_numeric($_GET["id"])) {
+        $id = $_GET["id"];
+
+        $stmt = $conn->prepare("SELECT * FROM gebruiker WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows === 1) {
+            $row = $result->fetch_assoc();
+        } else {
+            throw new Exception("Fout: Geen gebruiker gevonden met deze ID.");
         }
 
         $stmt->close();
     } else {
-        echo "Ongeldige ID.";
+        throw new Exception("Fout: Geen geldige ID opgegeven.");
     }
+
     $conn->close();
-    exit();
+} catch (Exception $e) {
+    echo $e->getMessage();
 }
-
-// ✅ Ophalen van account via GET
-if (isset($_GET["id"]) && is_numeric($_GET["id"])) {
-    $id = $_GET["id"];
-
-    $stmt = $conn->prepare("SELECT * FROM gebruiker WHERE id = ?");
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows === 1) {
-        $row = $result->fetch_assoc();
-    } else {
-        die("Fout: Geen gebruiker gevonden met deze ID.");
-    }
-
-    $stmt->close();
-} else {
-    die("Fout: Geen geldige ID opgegeven.");
-}
-
-$conn->close();
 ?>
 
 <!DOCTYPE html>

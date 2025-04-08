@@ -40,5 +40,15 @@ session_destroy();
             <a href="login.php" class="cta-button">Inloggen</a>
         </div>
     </section>
+    <footer>
+        <div class="footer-content">
+            <ul>
+                <li><a href="#">Account</a></li>
+                <li><a href="#">Lid</a></li>
+                <li><a href="#">Les</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
 </body>
 </html>
