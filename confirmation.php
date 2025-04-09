@@ -41,7 +41,10 @@ if (!isset($_SESSION['admin'])) {
             <h1>Welkom, <?php echo $_SESSION['admin']; ?>!</h1>
             <p>Je bent succesvol ingelogd.</p>
             <a href="accountbeheer.php" class="cta-button">Ga naar de beheerpagina</a>
+<<<<<<< HEAD
             <a href="Lesregistratie.php" class="cta-button">Ga naar Lesregistratie</a>
+=======
+>>>>>>> 1005ed751cfd3e682372c1b99571a0601268b49c
 
             <a href="logout.php" class="cta-button">Uitloggen</a>
         </div>

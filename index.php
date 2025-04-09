@@ -14,9 +14,13 @@
                     <li><a href="index.php">Home</a></li>
                     <li><a href="login.php">Account</a></li>
                     <li><a href="leden_overzicht.php">Lid</a></li>
+<<<<<<< HEAD
                     <li><a href="lessenoverzicht.php">Les</a></li>
                     <li><a href="lesregistratie.php">Lesregistratie</a></li>
 
+=======
+                    <li><a href="#">Les</a></li>
+>>>>>>> 1005ed751cfd3e682372c1b99571a0601268b49c
                     <li><a href="#">Contact</a></li>
                     <div class="menu-icon">☰</div>
                 </ul>
@@ -36,7 +40,11 @@
             <ul>
                 <li><a href="#">Account</a></li>
                 <li><a href="#">Lid</a></li>
+<<<<<<< HEAD
                 <li><a href="lessenoverzicht.php">Les</a></li>
+=======
+                <li><a href="#">Les</a></li>
+>>>>>>> 1005ed751cfd3e682372c1b99571a0601268b49c
                 <li><a href="#">Contact</a></li>
             </ul>
         </div>
