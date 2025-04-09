@@ -1,0 +1,293 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    background-color: #f5f7fa !important;
+    color: #2c3e50 !important;
+    line-height: 1.6 !important;
+}
+
+.container {
+    max-width: 1200px !important;
+    padding: 20px !important;
+}
+/* Nav */
+.nav-links {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin-left: auto;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+.nav-links .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.nav-links .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.nav-links .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.nav-links .dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.nav-links .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.nav-links .dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+/* Header stijlen */
+h1.text-center {
+    color: #2c3e50 !important;
+    font-weight: 700 !important;
+    margin: 30px 0 !important;
+    position: relative !important;
+    padding-bottom: 15px !important;
+}
+
+h1.text-center::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 100px !important;
+    height: 4px !important;
+    background: linear-gradient(90deg, #3498db, #2ecc71) !important;
+    border-radius: 2px !important;
+}
+
+h2 {
+    color: #2c3e50 !important;
+    font-weight: 600 !important;
+    margin: 25px 0 15px !important;
+    padding-bottom: 10px !important;
+    border-bottom: 2px solid #eee !important;
+}
+
+/* Formulier stijlen */
+.form-control, .form-select {
+    border-radius: 4px !important;
+    border: 1px solid #ddd !important;
+    padding: 10px 15px !important;
+    height: auto !important;
+    box-shadow: none !important;
+    transition: all 0.3s !important;
+    background-color: #fff !important;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #3498db !important;
+    box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25) !important;
+}
+
+label.form-label {
+    font-weight: 600 !important;
+    color: #34495e !important;
+    margin-bottom: 8px !important;
+}
+
+/* Button stijlen */
+.btn {
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    padding: 10px 20px !important;
+    border-radius: 4px !important;
+    transition: all 0.3s !important;
+    border: none !important;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #3498db, #2ecc71) !important;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #2980b9, #27ae60) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, #f39c12, #f1c40f) !important;
+    color: #fff !important;
+}
+
+.btn-warning:hover {
+    background: linear-gradient(135deg, #e67e22, #f39c12) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #e74c3c, #c0392b) !important;
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, #c0392b, #e74c3c) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Tabel stijlen */
+.table {
+    width: 100% !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    margin: 25px 0 !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+}
+
+.table thead th {
+    background: linear-gradient(135deg, #3498db, #2ecc71) !important;
+    color: white !important;
+    font-weight: 600 !important;
+    border: none !important;
+    padding: 12px 15px !important;
+}
+
+.table tbody tr {
+    transition: all 0.2s !important;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(52, 152, 219, 0.05) !important;
+}
+
+.table tbody td {
+    padding: 12px 15px !important;
+    vertical-align: middle !important;
+    border-top: 1px solid #eee !important;
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none !important;
+}
+
+/* Modal stijlen */
+.modal-content {
+    border-radius: 8px !important;
+    border: none !important;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #3498db, #2ecc71) !important;
+    color: white !important;
+    border-bottom: none !important;
+    border-radius: 8px 8px 0 0 !important;
+}
+
+.modal-title {
+    font-weight: 600 !important;
+}
+
+/* Alert stijlen */
+.alert {
+    border-radius: 4px !important;
+    padding: 12px 20px !important;
+    margin: 15px 0 !important;
+    border: none !important;
+}
+
+/* Responsive aanpassingen */
+@media (max-width: 992px) {
+    .table-responsive {
+        overflow-x: auto !important;
+    }
+    
+    .table thead {
+        display: none !important;
+    }
+    
+    .table, .table tbody, .table tr, .table td {
+        display: block !important;
+        width: 100% !important;
+    }
+    
+    .table tr {
+        margin-bottom: 20px !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+    }
+    
+    .table td {
+        text-align: right !important;
+        padding-left: 50% !important;
+        position: relative !important;
+        border-top: 1px solid #eee !important;
+    }
+    
+    .table td::before {
+        content: attr(data-label) !important;
+        position: absolute !important;
+        left: 15px !important;
+        width: calc(50% - 15px) !important;
+        padding-right: 15px !important;
+        text-align: left !important;
+        font-weight: 600 !important;
+        color: #3498db !important;
+    }
+    
+    .table td:last-child {
+        border-bottom: none !important;
+    }
+    
+    .btn-sm {
+        padding: 8px 12px !important;
+        font-size: 0.8rem !important;
+        margin-bottom: 5px !important;
+        display: inline-block !important;
+        width: 100% !important;
+        text-align: center !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 10px !important;
+    }
+    
+    h1.text-center {
+        font-size: 1.8rem !important;
+        margin: 20px 0 !important;
+    }
+    
+    .form-control, .form-select {
+        padding: 8px 12px !important;
+    }
+    
+    .btn {
+        padding: 8px 16px !important;
+        font-size: 0.9rem !important;
+    }
+}
